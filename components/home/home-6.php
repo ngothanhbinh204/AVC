@@ -1,51 +1,59 @@
 <?php
+// File: components/home/home-6.php
+// Section: Tin tức nổi bật - Using Relationship field
 global $post;
-$fields = get_field('group_6', $post);
-$select_category = $fields['select_category'];
+
+$fields = get_field('group_6', $post->ID);
+$title = $fields['title'] ?? '';
+$selected_posts = $fields['posts'] ?? [];
 ?>
-<?php if ($select_category) : ?>
-    <?php
-    $post_type = get_taxonomy($select_category->taxonomy)->object_type[0];
-    $args = array(
-        'post_type' => $post_type,
-        'posts_per_page' => 12,
-        'cat' => $select_category->term_id,
-    );
-    $the_query = new WP_Query($args);
-    ?>
-    <?php if ($the_query->have_posts()) : ?>
-        <section class="home-6 section pb-0 xl:pt-20">
-            <div class="container">
-                <div data-aos="zoom-in-up">
-                    <h2 class="block-title text-center"><?= $fields['title'] ?></h2>
-                </div>
-                <div data-aos="zoom-in-down" data-aos-delay=400>
-                    <div class="list mt-10">
-                        <div class="swiper-shadow-spacing swiper-column-auto auto-4-column relative auto-play allow-touchMove">
-                            <div class="swiper">
-                                <div class="swiper-wrapper">
-
-                                    <?php if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->the_post(); ?>
-                                            <div class="swiper-slide">
-                                                <?= get_template_part('/components/boxNews/boxNews-1', null, array(
-                                                    'id' => get_the_ID(),
-                                                    'wrapTag' => 'h3'
-                                                )) ?>
-                                            </div>
-                                    <?php endwhile;
-                                    endif;
-                                    wp_reset_postdata(); ?>
-
+<?php if ($selected_posts) : ?>
+<section class="home-6 section pb-0 xl:pt-20" data-aos="fade-up" data-aos-delay="400">
+    <div class="container">
+        <?php if ($title) : ?>
+        <h2 class="block-title text-center"><?= $title ?></h2>
+        <?php endif; ?>
+        <div class="list mt-10">
+            <div class="swiper-shadow-spacing swiper-column-auto auto-4-column relative auto-play allow-touchMove">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($selected_posts as $post_id) : ?>
+                        <?php
+                                $post_obj = get_post($post_id);
+                                if (!$post_obj) continue;
+                                $post_title = $post_obj->post_title;
+                                $post_date = get_the_date('d.m.Y', $post_id);
+                                $post_link = get_permalink($post_id);
+                                ?>
+                        <div class="swiper-slide">
+                            <div class="bn-1 h-full flex flex-col transition-all">
+                                <div class="img">
+                                    <a href="<?= $post_link ?>">
+                                        <?= get_image_post($post_id, 'image') ?>
+                                    </a>
+                                </div>
+                                <div class="content pt-5 px-2 sm:px-5 pb-3 flex-1 flex flex-col">
+                                    <div
+                                        class="title text-16px sm:subheader-24 font-bold text-black flex-1 transition-all">
+                                        <a href="<?= $post_link ?>">
+                                            <span class="line-clamp-4"><?= $post_title ?></span>
+                                        </a>
+                                    </div>
+                                    <date class="text-18px text-neutral-500-main block mt-10"><?= $post_date ?></date>
                                 </div>
                             </div>
-                            <div class="arrow-button">
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
-                            </div>
                         </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
+                <div class="arrow-button">
+                    <div style="background: url(wp-content/themes/canhcamtheme/img/btn-bg.svg) no-repeat 50%"
+                        class="swiper-button-prev"></div>
+                    <div style="background: url(wp-content/themes/canhcamtheme/img/btn-bg.svg) no-repeat 50%"
+                        class="swiper-button-next"></div>
+                </div>
             </div>
-        </section>
-    <?php endif; ?>
+        </div>
+    </div>
+</section>
 <?php endif; ?>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CDN--><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Style-->
+    <link rel="stylesheet" href="./styles/main.min.css">
+    <link rel="stylesheet" href="./styles/global.min.css">
+    <link rel="stylesheet" href="./styles/fontAwesome.min.css"><link rel="icon" type="image/png" href="./favicon.ico">
+    <title>Layout</title>
+  </head>
+  <body>
+    <header class="z-[150] fixed top-0 left-0 w-full transition-all duration-300 h-[70px]  undefined">
+      <div class="container h-full">
+        <div class="header-wrapper flex items-center justify-between gap-3 h-full">
+          <div class="col-left w-full h-full">
+            <div class="logo h-full flex items-center xl:py-0 py-2"><a href="/"><img class="lozad" data-src="./img/logo.webp"></a></div>
+          </div>
+          <div class="col-right py-9px flex flex-col items-end">
+            <div class="top flex items-center gap-3 xl:gap-6">
+              <div class="search-wrapper">
+                <div class="search-overlay" id="search-overlay">
+                  <form class="searchbox flex">
+                    <input placeholder="Từ khóa của bạn...">
+                    <button><i class="fa-light fa-magnifying-glass text-16px text-primary-5"></i></button>
+                  </form>
+                </div>
+                <div class="mobile-show">
+                  <div class="search-icon"><a href="javascript:;">
+                       <i class="fa-light fa-magnifying-glass"></i></a></div>
+                </div>
+              </div>
+              <div id="autoClone-HeaderLanguage">
+                <div class="language relative">
+                  <div class="wpml-ls">
+                    <ul>
+                      <li class="current"><a><span>VN</span></a></li>
+                      <li><a><span>EN</span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="desktop-show">
+                <div class="flex items-center gap-1" id="autoClone-HeaderHotline"><a class="hotline flex items-center gap-2">
+                     <i class="fa-light fa-phone-volume text-16px -rotate-45"></i>Hotline:<strong>0210 3888 399</strong></a><a class="download flex items-center gap-2 rounded-tl-6 rounded-br-6 bg-primary-1 text-white text-16px leading-1.25 py-3 xl:py-6px px-6 text-center justify-center">
+                     <i class="fa-solid fa-download"></i></a></div>
+              </div>
+              <div class="mobile-show">
+                <div class="relative" id="burger"><svg viewBox="0 0 32 32"><path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path><path class="line" d="M7 16 27 16"></path></svg></div>
+              </div>
+            </div>
+            <div class="bottom mt-10px xl:block hidden">
+              <div id="autoClone-NavMenu">
+                <nav>
+                  <ul>
+                    <li><a href=""><i class="fa-solid fa-house"></i></a></li>
+                    <li><a href="./introduce.html">Giới thiệu</a></li>
+                    <li><a href="./ProductList.html">SẢN PHẨM</a></li>
+                    <li><a href="./NewsList.html">TIN TỨC</a></li>
+                    <li><a href="./RecruitmentList.html">TUYỂN DỤNG</a></li>
+                    <li><a href="./Contact.html">LIÊN HỆ</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-mobile max-w-clamp-375px z-3 bg-white fixed w-full right-0 overflow-hidden">
+        <div class="wrapper h-full flex flex-col px-3 pt-4">
+          <div id="autoCloneHere-HeaderHotline"></div>
+          <div class="nav-on-mobile flex-1 h-full overflow-auto flex flex-col">
+            <div id="autoCloneHere-NavMenu"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="global-breadcrumb">
+        <div class="container">
+          <nav class="rank-math-breadcrumb">
+            <p><a>Trang chủ</a><span class="separator"></span><a>Tin tức</a><span class="separator"></span><span class="last">Danh mục </span>
+            </p>
+          </nav>
+        </div>
+      </div>
+      <section class="recruitment-1 rem:min-h-[680px] flex flex-col justify-center" setBackground="./img/bg-1.webp">
+        <div class="container"> 
+          <div class="content rem:max-w-[600px] w-full flex flex-col gap-6">
+            <h2 class="header-48">Môi trường làm việc</h2>
+            <div class="format-content"> 
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="recruitment-2 section xl:py-20">
+        <div class="container"> 
+          <div class="h2 text-center header-48 mb-10">Môi trường làm việc	</div>
+          <div class="wrapper grid lg:grid-cols-4 grid-cols-2 gap-10">
+            <div class="item py-10 px-5 border border-Neutral-200 flex flex-col items-center justify-center">
+              <div class="icon rem:w-[70px]"><a class="img-ratio" href="#"><img class="lozad undefined" data-src="./img/ICON.webp" alt=""/></a></div>
+              <div class="content text-center mt-3">
+                <div class="top"> 
+                  <div class="title text-xl font-bold text-Primary-New-1 mb-3">Tiêu đề</div>
+                </div>
+                <div class="bottom"> 
+                  <div class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+                </div>
+              </div>
+            </div>
+            <div class="item py-10 px-5 border border-Neutral-200 flex flex-col items-center justify-center">
+              <div class="icon rem:w-[70px]"><a class="img-ratio" href="#"><img class="lozad undefined" data-src="./img/ICON.webp" alt=""/></a></div>
+              <div class="content text-center mt-3">
+                <div class="top"> 
+                  <div class="title text-xl font-bold text-Primary-New-1 mb-3">Tiêu đề</div>
+                </div>
+                <div class="bottom"> 
+                  <div class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+                </div>
+              </div>
+            </div>
+            <div class="item py-10 px-5 border border-Neutral-200 flex flex-col items-center justify-center">
+              <div class="icon rem:w-[70px]"><a class="img-ratio" href="#"><img class="lozad undefined" data-src="./img/ICON.webp" alt=""/></a></div>
+              <div class="content text-center mt-3">
+                <div class="top"> 
+                  <div class="title text-xl font-bold text-Primary-New-1 mb-3">Tiêu đề</div>
+                </div>
+                <div class="bottom"> 
+                  <div class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+                </div>
+              </div>
+            </div>
+            <div class="item py-10 px-5 border border-Neutral-200 flex flex-col items-center justify-center">
+              <div class="icon rem:w-[70px]"><a class="img-ratio" href="#"><img class="lozad undefined" data-src="./img/ICON.webp" alt=""/></a></div>
+              <div class="content text-center mt-3">
+                <div class="top"> 
+                  <div class="title text-xl font-bold text-Primary-New-1 mb-3">Tiêu đề</div>
+                </div>
+                <div class="bottom"> 
+                  <div class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="recruitment-3 section xl:py-20"> 
+        <div class="container"> 
+          <h2 class="header-48 mb-10 font-extrabold text-center">JOIN OUR TEAM</h2>
+          <div class="career-table table-responsive">
+            <table>
+              <thead> 
+                <tr> 
+                  <td class="text-center rem:w-[80px]">No.</td>
+                  <td class="lg:rem:w-[595px]  w-auto">Recruitment position</td>
+                  <td class="text-center">Area</td>
+                  <td class="text-center">Deadline</td>
+                  <td class="text-center"> </td>
+                </tr>
+              </thead>
+              <tbody> 
+                <tr> 
+                  <td class="text-center p-3">01</td>
+                  <td><a class="recruitment-link" href="./recruitmentDetail.html">Nhân viên Marketing </a></td>
+                  <td class="text-center">TP. Hồ Chí Minh</td>
+                  <td class="text-center">20.06.2024</td>
+                  <td class="text-center text-Primary-New-1">
+                    <div class="dowload flex items-center gap-3 justify-center"> <a class=" font-medium" href="#">View more</a><i class="fa-solid fa-arrow-right"></i></div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td class="text-center p-3">01</td>
+                  <td><a class="recruitment-link" href="./recruitmentDetail.html">Nhân viên Marketing </a></td>
+                  <td class="text-center">TP. Hồ Chí Minh</td>
+                  <td class="text-center">20.06.2024</td>
+                  <td class="text-center text-Primary-New-1">
+                    <div class="dowload flex items-center gap-3 justify-center"> <a class=" font-medium" href="#">View more</a><i class="fa-solid fa-arrow-right"></i></div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td class="text-center p-3">01</td>
+                  <td><a class="recruitment-link" href="./recruitmentDetail.html">Nhân viên Marketing </a></td>
+                  <td class="text-center">TP. Hồ Chí Minh</td>
+                  <td class="text-center">20.06.2024</td>
+                  <td class="text-center text-Primary-New-1">
+                    <div class="dowload flex items-center gap-3 justify-center"> <a class=" font-medium" href="#">View more</a><i class="fa-solid fa-arrow-right"></i></div>
+                  </td>
+                </tr>
+                <tr class="hidden">
+                  <td class="text-center p-3">01</td>
+                  <td><a class="recruitment-link" href="./recruitmentDetail.html">Nhân viên Marketing </a></td>
+                  <td class="text-center">TP. Hồ Chí Minh</td>
+                  <td class="text-center">20.06.2024</td>
+                  <td class="text-center text-Primary-New-1">
+                    <div class="dowload flex items-center gap-3 justify-center"> <a class=" font-medium" href="#">View more</a><i class="fa-solid fa-arrow-right"></i></div>
+                  </td>
+                </tr>
+                <tr class="hidden">
+                  <td class="text-center p-3">01</td>
+                  <td><a class="recruitment-link" href="./recruitmentDetail.html">Nhân viên Marketing </a></td>
+                  <td class="text-center">TP. Hồ Chí Minh</td>
+                  <td class="text-center">20.06.2024</td>
+                  <td class="text-center text-Primary-New-1">
+                    <div class="dowload flex items-center gap-3 justify-center"> <a class=" font-medium" href="#">View more</a><i class="fa-solid fa-arrow-right"></i></div>
+                  </td>
+                </tr>
+                <tr class="hidden">
+                  <td class="text-center p-3">01</td>
+                  <td><a class="recruitment-link" href="./recruitmentDetail.html">Nhân viên Marketing </a></td>
+                  <td class="text-center">TP. Hồ Chí Minh</td>
+                  <td class="text-center">20.06.2024</td>
+                  <td class="text-center text-Primary-New-1">
+                    <div class="dowload flex items-center gap-3 justify-center"> <a class=" font-medium" href="#">View more</a><i class="fa-solid fa-arrow-right"></i>	</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="more flex items-center justify-center mt-10 relative z-50"><a class="btn-primary" href="#"> <span>MORE</span></a></div>
+        </div>
+      </section>
+    </main>
+    <footer class="pt-12 pb-5" setbackground="./img/footer/bg.webp">
+      <div class="container">
+        <div class="wrapper relative">
+          <div class="footer-column"> 
+            <div class="title subheader-24 font-bold text-white">Công ty cổ phần gỗ MDF Mekong</div>
+            <div class="desc text-18px font-normal"> 
+              <p>Công ty nông nghiệp & năng lượng tái tạo hàng đầu Campuchia</p>
+            </div>
+            <div class="footer-social"> 
+              <ul> 
+                <li> <a href="#">
+                     <i class="fa-brands fa-facebook-f"></i></a></li>
+                <li> <a href="#">
+                     <i class="fa-brands fa-facebook-f"></i></a></li>
+                <li> <a href="#">
+                     <i class="fa-brands fa-facebook-f"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-column"> 
+            <div class="title subheader-24 font-bold text-white">Công ty cổ phần gỗ MDF Mekong</div>
+            <div class="footer-contact"> 
+              <ul> 
+                <li> <a href="#"> 
+                    <div class="icon">
+                       <i class="fa-light fa-location-dot"></i></div><span>Phnom Penh, Cambodia</span></a></li>
+                <li> <a href="#"> 
+                    <div class="icon">
+                       <i class="fa-light fa-location-dot"></i></div><span>Phnom Penh, Cambodia</span></a></li>
+                <li> <a href="#"> 
+                    <div class="icon">
+                       <i class="fa-light fa-location-dot"></i></div><span>Phnom Penh, Cambodia</span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-column"> 
+            <div class="title subheader-24 font-bold text-white">Công ty cổ phần gỗ MDF Mekong</div>
+            <ul class="footer-menu"> 
+              <li> <a href="#">Về chúng tôi</a></li>
+              <li> <a href="#">Về chúng tôi</a></li>
+              <li> <a href="#">Về chúng tôi</a></li>
+              <li> <a href="#">Về chúng tôi</a></li>
+            </ul>
+            <div class="dowload-file"> <a href="#"> 
+                <div class="icon">
+                   <i class="fa-regular fa-file-pdf"></i></div><span>Tải hồ sơ năng lực (PDF)</span></a></div>
+          </div>
+        </div>
+        <div class="footer-bottom flex items-center justify-between mt-10">
+          <div class="footer-copyright text-14px">
+            <p>Copyright © 2025 Bản quyền thuộc về Công ty TNHH MTV Bảo Hiểm Bảo Việt.</p>
+          </div>
+          <div class="footer-policy">
+            <ul> 
+              <li> <a href="#">Privacy Policy</a></li>
+              <li> <a href="#">Terms & Conditions</a></li>
+              <li> <a href="#">Sitemap</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div id="overlay"></div>
+    <div class="select-none" id="fixed-tool"><a class="item block border border-white rounded-4px xl:rounded-3 bg-primary-800 px-2 py-6px transition-all duration-300" href="https://google.com/">
+        <div class="flex items-center">
+          <div class="icon text-center">
+             <i class="fa-light fa-message"></i></div>
+          <div class="ctn ml-1 xl:ml-2 pl-1 xl:pl-2 border-l border-white text-14px font-bold text-white">Messenger</div>
+        </div></a><a class="item block border border-white rounded-4px xl:rounded-3 bg-primary-800 px-2 py-6px transition-all duration-300" href="https://google.com/">
+        <div class="flex items-center">
+          <div class="icon text-center">
+             <i class="fa-light fa-message"></i></div>
+          <div class="ctn ml-1 xl:ml-2 pl-1 xl:pl-2 border-l border-white text-14px font-bold text-white">Messenger</div>
+        </div></a><a class="item block border border-white rounded-4px xl:rounded-3 bg-primary-800 px-2 py-6px transition-all duration-300" href="https://google.com/">
+        <div class="flex items-center">
+          <div class="icon text-center">
+             <i class="fa-light fa-message"></i></div>
+          <div class="ctn ml-1 xl:ml-2 pl-1 xl:pl-2 border-l border-white text-14px font-bold text-white">Messenger</div>
+        </div></a><a class="item block border border-white rounded-4px xl:rounded-3 bg-primary-800 px-2 py-6px transition-all duration-300" href="https://google.com/">
+        <div class="flex items-center">
+          <div class="icon text-center"> <img class="lozad" data-src="https://picsum.photos/1600/900"></div>
+          <div class="ctn ml-1 xl:ml-2 pl-1 xl:pl-2 border-l border-white text-14px font-bold text-white">Messenger</div>
+        </div></a>
+      <div class="mobile-show">
+        <div class="item scrollToTop cursor-pointer border border-white rounded-4px xl:rounded-3 bg-primary-800 px-2 py-6px transition-all duration-300">
+          <div class="flex items-center">
+            <div class="icon text-center">
+               <i class="fa-light fa-arrow-up"></i></div>
+            <div class="ctn ml-1 xl:ml-2 pl-1 xl:pl-2 border-l border-white text-14px font-bold text-white">Back to top</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="./scripts/global.min.js"> </script>
+    <script type="text/javascript" src="./scripts/main.min.js"> </script>
+  </body>
+</html>

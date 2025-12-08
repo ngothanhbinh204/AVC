@@ -306,6 +306,14 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu
 
     function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
     {
+        static $count = 0;
+        if ($depth == 0) {
+            $count++;
+            if ($count == 1) {
+                $output .= '<li><a href="' . esc_attr($item->url) . '"><i class="fa-solid fa-house"></i></a></li>';
+                return;
+            }
+        }
         $isValidCustomUrl = $item->custom_data && $item->custom_data['url'] && $item->custom_data['isModify'];
         if ($isValidCustomUrl) {
             $item->url = $item->custom_data['url'];
@@ -515,3 +523,60 @@ add_filter('rank_math/frontend/breadcrumb/items', function ($crumbs, $class) {
     }
     return $crumbs;
 }, 10, 2);
+
+// AJAX Load More Recruitment Posts
+function load_more_recruitment_posts() {
+    $page = intval($_POST['page']);
+    $posts_per_page = intval($_POST['posts_per_page']);
+    $offset = intval($_POST['offset']);
+
+    $args = array(
+        'post_type' => 'recruitment',
+        'posts_per_page' => $posts_per_page,
+        'offset' => $offset,
+        'post_status' => 'publish',
+        'orderby' => 'date',
+        'order' => 'DESC'
+    );
+
+    $recruitment_query = new WP_Query($args);
+    $html = '';
+    $count = $offset + 1;
+
+    if ($recruitment_query->have_posts()) {
+        ob_start();
+        while ($recruitment_query->have_posts()): $recruitment_query->the_post();
+            $recruitment_id = get_the_ID();
+            $area = get_field('area', $recruitment_id) ?: '';
+            $deadline = get_field('deadline', $recruitment_id) ?: '';
+            ?>
+<tr>
+    <td class="text-center p-3"><?= str_pad($count, 2, '0', STR_PAD_LEFT) ?></td>
+    <td>
+        <a class="recruitment-link" href="<?= get_permalink() ?>"><?= get_the_title() ?></a>
+    </td>
+    <td class="text-center"><?= esc_html($area) ?></td>
+    <td class="text-center"><?= esc_html($deadline) ?></td>
+    <td class="text-center text-Primary-New-1">
+        <div class="dowload flex items-center gap-3 justify-center">
+            <a class="font-medium" href="<?= get_permalink() ?>"><?= __('Xem thêm', 'canhcamtheme') ?></a>
+            <i class="fa-solid fa-arrow-right"></i>
+        </div>
+    </td>
+</tr>
+<?php
+            $count++;
+        endwhile;
+        wp_reset_postdata();
+        $html = ob_get_clean();
+    }
+
+    $has_more = ($offset + $posts_per_page) < $recruitment_query->found_posts;
+
+    wp_send_json_success(array(
+        'html' => $html,
+        'has_more' => $has_more
+    ));
+}
+add_action('wp_ajax_load_more_recruitment', 'load_more_recruitment_posts');
+add_action('wp_ajax_nopriv_load_more_recruitment', 'load_more_recruitment_posts');

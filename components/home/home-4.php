@@ -1,49 +1,50 @@
 <?php
+// File: components/home/home-4.php
+// Section: Chứng nhận chất lượng
 global $post;
 
-$idPageIntroduce = get_id_translate('templates/Introduce.php');
+$fields = get_field('group_4', $post->ID);
+$title = $fields['title'] ?? '';
+$items = $fields['items'] ?? [];
+$button = $fields['button'] ?? '';
 ?>
-<?php if ($idPageIntroduce) : ?>
-    <?php
-    $fields = $args['fields'] ?? get_field('group_5', $idPageIntroduce);
-    ?>
-    <section class="home-4 section xl:pt-20 pb-0">
-        <div class="container">
-            <div data-aos="zoom-in-up">
-                <h2 class="block-title text-center"><?= $fields['title'] ?></h2>
-            </div>
-            <?php $repeater = $fields['repeater']; ?>
-            <?php if ($repeater) : ?>
-                <div class="row mt-10 2xl:mt-16 justify-center">
-                    <?php $key = 0;
-                    $animation = ['fade-left', 'fade-up', 'fade-right'];
-                    $animationDelay = ['400', '0', '400'];
+<section class="home-4 section xl:pt-20 pb-0" data-aos="fade-up" data-aos-delay="200">
+    <div class="container">
+        <?php if ($title) : ?>
+        <h2 class="block-title text-center"><?= $title ?></h2>
+        <?php endif; ?>
+        <?php if ($items) : ?>
+        <div class="row mt-10 2xl:mt-16 justify-center">
+            <?php foreach ($items as $item) : ?>
+            <?php
+                    $item_image = $item['item_image'] ?? '';
+                    $item_title = $item['item_title'] ?? '';
+                    $item_description = $item['item_description'] ?? '';
                     ?>
-                    <?php foreach ($repeater as $value) : ?>
-                        <?php $animationId = $key % 3; ?>
-                        <?php $key++; ?>
-
-                        <div class="col-lg-4 col-sm-6" data-aos="<?= $animation[$animationId] ?>" data-aos-delay="<?= $animationDelay[$animationId] ?>">
-                            <div class="item">
-                                <div class="img max-w-clamp-120px mx-auto w-full"><a><?= custom_lozad_image($value['logo']) ?></a>
-                                </div>
-                                <h3 class="title subheader-24 font-bold text-primary-5 mt-3 text-center"><?= $value['title'] ?></h3>
-                                <div class="description mt-1 text-18px text-primary-5 text-center"><?= $value['description'] ?></div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+            <div class="col-lg-4 col-sm-6">
+                <div class="item">
+                    <?php if ($item_image) : ?>
+                    <div class="img max-w-clamp-120px mx-auto w-full">
+                        <a href="javascript:;"><?= get_image_attrachment($item_image, 'image') ?></a>
+                    </div>
+                    <?php endif; ?>
+                    <?php if ($item_title) : ?>
+                    <div class="title subheader-24 font-bold text-primary-5 mt-3 text-center"><?= $item_title ?></div>
+                    <?php endif; ?>
+                    <?php if ($item_description) : ?>
+                    <div class="description mt-1 text-18px text-primary-5 text-center"><?= $item_description ?></div>
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?>
-            <?php if ($fields['url']) : ?>
-                <div data-aos="flip-up" data-aos-delay="400">
-                    <?= get_template_part('/components/UI/button', null, array(
-                        'text' => __('Tìm hiểu thêm', 'canhcamtheme'),
-                        'className' => 'btn-primary mx-auto mt-8 xl:mt-10',
-                        'href' => $fields['url']
-                    )) ?>
-                </div>
-            <?php endif; ?>
-
+            </div>
+            <?php endforeach; ?>
         </div>
-    </section>
-<?php endif; ?>
+        <?php endif; ?>
+        <?php if ($button && $button['url']) : ?>
+        <div class="button">
+            <a class="btn btn-primary mx-auto mt-8 xl:mt-10" href="<?= $button['url'] ?>">
+                <?= $button['title'] ?: __('XEM THÊM', 'canhcamtheme') ?>
+            </a>
+        </div>
+        <?php endif; ?>
+    </div>
+</section>

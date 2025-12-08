@@ -20,4 +20,5 @@ require get_template_directory() . '/inc/function-setup.php';
 require get_template_directory() . '/inc/function-ajax.php';
 require get_template_directory() . '/inc/function-pagination.php';
 require get_template_directory() . '/inc/function-form.php';
+require get_template_directory() . '/inc/post-type-recruitment.php';
 

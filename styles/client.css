@@ -1,0 +1,39 @@
+
+#form-requirement .form-group input, #form-requirement .form-group textarea, #form-requirement .form-group select {
+    --tw-border-opacity: 1;
+    --tw-text-opacity: 1;
+    border-color: rgb(212 211 211 / var(--tw-border-opacity, 1));
+    border-width: 1px;
+    color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+    font-size: .8333333333333334rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    padding: clamp(12px, .625rem, .625rem) clamp(24px, 1.25rem, 1.25rem);
+    width: 100%;
+    max-height: 3rem;
+}
+.popup-content .wpcf7-form .wpcf7-spinner {
+    display: none;
+}
+.popup-content .wpcf7-form.submitting .wpcf7-spinner{
+    display: block;
+}
+.form-submit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+.form-submit input[type="submit"] {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.form-submit .wpcf7-spinner {
+    order: 3;
+}
+.popup-content .wpcf7-form .wpcf7-response-output {
+    text-align: center;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}

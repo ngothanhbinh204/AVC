@@ -12,13 +12,14 @@ Template name: Template - Home
     <h1><?= get_bloginfo('name') ?></h1>
 </div>
 
-<?=
+<?php
 get_template_part('./components/home/home-1');
 get_template_part('./components/home/home-2');
 get_template_part('./components/home/home-3');
 get_template_part('./components/home/home-4');
 get_template_part('./components/home/home-5');
 get_template_part('./components/home/home-6');
+get_template_part('./components/home/home-8');
 get_template_part('./components/home/home-7');
 ?>
 <?php get_footer(); ?>

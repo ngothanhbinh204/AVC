@@ -488,48 +488,174 @@ function get_post_primary_category($post_id, $term = 'category', $return_all_cat
 
 function log_dump($data)
 {
-    // Use the PHP ob_start function to capture the output of the var_dump function
     ob_start();
     var_dump($data);
     $dump = ob_get_clean();
 
-    // Use the PHP highlight_string function to highlight the syntax
     $highlighted = highlight_string("<?php\n" . $dump . "\n?>", true);
 
-    // Remove the PHP tags and wrap the highlighted code in a <pre> tag
-    $formatted = '<pre>' . substr($highlighted, 27, -8) . '</pre>';
+$formatted = '
+<pre>' . substr($highlighted, 27, -8) . '</pre>';
 
-    // Add custom CSS styles for the .php and .hlt classes
-    $custom_css = 'pre {position: static;
-		background: #ccc;
-		max-width: 100vw;
-		width: 100%;
-	}
-	pre::-webkit-scrollbar{
-	width: 1rem;}';
+// Add custom CSS styles for the .php and .hlt classes
+$custom_css = 'pre {position: static;
+background: #ccc;
+max-width: 100vw;
+width: 100%;
+}
+pre::-webkit-scrollbar{
+width: 1rem;}';
 
-    // Wrap the custom CSS in a <style> tag
-    $formatted_css = '<style>' . $custom_css . '</style>';
-    echo ($formatted_css . $formatted);
+$formatted_css='<style>
+'. $custom_css . '
+</style>';
+echo ($formatted_css . $formatted);
 }
 
 function empty_content($str)
 {
-    return trim(str_replace('&nbsp;', '', strip_tags($str, '<img>'))) == '';
+return trim(str_replace('&nbsp;', '', strip_tags($str, '<img>'))) == '';
 }
 
 
 
 function get_page_parent($post)
 {
-    if ($post->post_parent === 0) {
-        return $post->ID;
-    } else {
-        $current_parent_id = $post->post_parent;
-        while ($current_parent_id !== 0) {
-            $post_parent = get_post($current_parent_id);
-            $current_parent_id = $post_parent->post_parent;
-        }
-        return $post_parent->ID;
-    }
+if ($post->post_parent === 0) {
+return $post->ID;
+} else {
+$current_parent_id = $post->post_parent;
+while ($current_parent_id !== 0) {
+$post_parent = get_post($current_parent_id);
+$current_parent_id = $post_parent->post_parent;
+}
+return $post_parent->ID;
+}
+}
+
+/**
+* Get image attractment
+*/
+
+function changeAttrImage($url)
+{
+$image_output = $url;
+// Thêm class lazyload và thay đổi src thành data-src
+$image_output = str_replace('class="', 'class="lazyload ', $image_output);
+$image_output = str_replace('src="',
+'src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="', $image_output);
+return $image_output;
+}
+function get_image_attachment($image, $type = "image")
+{
+// Get image ID from different formats
+$image_id = null;
+if (is_array($image)) {
+// Check for 'ID' (uppercase) or 'id' (lowercase)
+$image_id = !empty($image['ID']) ? $image['ID'] : (!empty($image['id']) ? $image['id'] : null);
+} elseif (is_numeric($image)) {
+$image_id = $image;
+}
+
+if ($type == "image") {
+if ($image_id) {
+$alt = get_post_meta($image_id, '_wp_attachment_image_alt', true) != '' ? get_post_meta($image_id,
+'_wp_attachment_image_alt', true) : get_bloginfo('name');
+$url = wp_get_attachment_image($image_id, 'full', '', array('class' => '1', 'alt' => $alt, 'title' => $alt));
+return changeAttrImage($url);
+}
+}
+if ($type == "url") {
+if ($image_id) {
+$url = wp_get_attachment_image_url($image_id, 'full');
+return $url;
+}
+}
+return '';
+}
+// get img post
+function get_image_post($id, $type = "image")
+{
+if ($type == "image") {
+$alt = get_the_post_thumbnail_caption($id) != '' ? get_the_post_thumbnail_caption($id) : get_the_title($id);
+$url = get_the_post_thumbnail($id, 'full', array('class' => '', 'alt' => $alt, 'title' => $alt));
+return changeAttrImage($url);
+}
+if ($type == "url") {
+$url = get_the_post_thumbnail_url($id, 'full', array('class' => ''));
+return $url;
+}
+}
+
+function get_video_thumbnail($post_id) {
+if (has_post_thumbnail($post_id)) {
+return get_image_post($post_id);
+}
+$default = get_template_directory_uri() . '/assets/images/placeholder-video.jpg';
+
+return '
+<img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+    data-src="'. $default .'" alt="Video Thumbnail" />
+';
+}
+function normalize_youtube_url($url) {
+if (!$url) return '';
+
+// Chuyển Shorts → watch?v=
+if (strpos($url, '/shorts/') !== false) {
+return str_replace('/shorts/', '/watch?v=', $url);
+}
+
+return $url;
+}
+
+function get_video_thumbnail_image($post_id) {
+if (has_post_thumbnail($post_id)) {
+return get_image_post($post_id);
+}
+
+$fallback = get_template_directory_uri() . '/assets/images/placeholder-video.jpg';
+
+return '
+<img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+    data-src="' . $fallback . '" alt="Video Thumbnail" />
+';
+}
+
+
+
+// Alias function để tương thích ngược
+function get_image_attrachment($image, $type = "image") {
+return get_image_attachment($image, $type);
+}
+
+add_filter('wp_lazy_loading_enabled', '__return_true');
+/**
+* Get ancesstor of post
+*/
+
+function get_post_categories($post_id)
+{
+// Ensure post ID is an integer
+$post_id = intval($post_id);
+
+// Get the categories for the post
+$categories = get_the_category($post_id);
+
+// Initialize an array to store category data
+$category_data = array();
+
+// Check if categories are retrieved successfully
+if (!empty($categories) && !is_wp_error($categories)) {
+// Loop through each category and store the ID and name
+foreach ($categories as $category) {
+$category_data[] = array(
+'id' => $category->term_id,
+'name' => $category->name,
+);
+}
+}
+
+// Return category data
+return $category_data;
 }

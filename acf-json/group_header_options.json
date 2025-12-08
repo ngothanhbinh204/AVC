@@ -1,0 +1,80 @@
+{
+    "key": "group_header_options",
+    "title": "Header Options",
+    "fields": [
+        {
+            "key": "field_header_options",
+            "label": "Header Options",
+            "name": "header_options",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "sub_fields": [
+                {
+                    "key": "field_header_hot_line",
+                    "label": "Hotline",
+                    "name": "hot_line",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Phone number for hotline display",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_header_download_url",
+                    "label": "Download URL",
+                    "name": "download_url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "URL for download button in header",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": ""
+                }
+            ],
+            "layout": "block"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "theme-general-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Header options for the theme",
+    "show_in_rest": false,
+    "modified": 1765176908
+}
