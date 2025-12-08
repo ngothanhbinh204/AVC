@@ -33,7 +33,7 @@ $thumbnail_id = get_post_thumbnail_id($post->ID);
             <?php endif; ?>
             <div class="content">
                 <div class="title rem:text-[24px] text-primary-500 font-bold border-b border-b-Utility-100 pb-6">
-                    <?= __( 'Overview', 'canhcamtheme' ) ?>
+                    <?= __( 'Tổng quan', 'canhcamtheme' ) ?>
                 </div>
                 <div class="recruitment-detail-tab-left flex flex-col max-lg:w-full">
                     <?php if (!empty($overview_items)):
@@ -117,7 +117,7 @@ $thumbnail_id = get_post_thumbnail_id($post->ID);
                 <div class="box-info mt-10 max-lg:border max-lg:border-neutral-300 border border-Neutral-100">
                     <h2
                         class="box-info-heading lg:px-3 lg:py-4 p-3 bg-primary-500 text-white font-bold rem:text-[24px]">
-                        <?= __( 'Other positions', 'canhcamtheme' ) ?></h2>
+                        <?= __( 'Vị trí khác', 'canhcamtheme' ) ?></h2>
                     <?php while ($other_query->have_posts()): $other_query->the_post();
                             $other_deadline = get_field('deadline', get_the_ID()) ?: '';
                             ?>

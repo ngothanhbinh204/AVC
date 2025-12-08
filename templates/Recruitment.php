@@ -87,8 +87,8 @@ $group_3 = get_field('group_3', $post->ID);
 $job_title = $group_3['title'] ?? __('THAM GIA ĐỘI NGŨ CỦA CHÚNG TÔI', 'canhcamtheme');
 $job_button_text = $group_3['button_text'] ?? __('XEM THÊM', 'canhcamtheme');
 $posts_per_page = $group_3['posts_per_page'] ?? 6;
-$initial_posts = 1; // Initial posts to show
-$load_more_posts = 3; // Fixed posts to load more each time
+$initial_posts = $posts_per_page; 
+$load_more_posts = 3; 
 
 // Query recruitment posts - initial load
 $args = array(
@@ -159,10 +159,6 @@ $recruitment_query = new WP_Query($args);
                 <a class="btn-primary" id="load-more-text"><?= __('TẢI THÊM', 'canhcamtheme') ?></a>
             </button>
         </div>
-        <?php elseif ($recruitment_query->found_posts > 0): ?>
-        <div class="more flex items-center justify-center mt-10 relative z-50">
-            <a class="btn-primary" href="#"><span><?= esc_html($job_button_text) ?></span></a>
-        </div>
         <?php endif; ?>
     </div>
 </section>
@@ -198,8 +194,8 @@ jQuery(document).ready(function($) {
                     var newOffset = offset + postsPerPage;
                     button.data('offset', newOffset);
 
-                    // Check if there are more posts
-                    if (newOffset >= totalPosts) {
+                    // Check if there are more posts using server response
+                    if (!response.data.has_more) {
                         button.hide();
                     } else {
                         $('#load-more-text').text('<?= __('TẢI THÊM', 'canhcamtheme') ?>');
