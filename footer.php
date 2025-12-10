@@ -1,26 +1,29 @@
 </main>
 
-<?php $footer = get_field('footer_options', 'options'); ?>
+<?php $footer = get_field('footer_options', 'options'); 
+$col1 = $footer['column_1'] ?? [];
+$col2 = $footer['column_2'] ?? [];
+$col3 = $footer['column_3'] ?? [];
+?>
 <footer class="pt-12 pb-5" setbackground="<?php bloginfo("template_directory"); ?>/img/footer/bg.webp">
     <div class="container">
         <div class="wrapper relative">
-            <?php if ($footer['columns']) : ?>
-            <?php foreach ($footer['columns'] as $column) : ?>
+            <!-- Cột 1: Thông tin công ty -->
             <div class="footer-column">
-                <?php if ($column['title']) : ?>
-                <div class="title subheader-24 font-bold text-white"><?= $column['title'] ?></div>
+                <?php if (!empty($col1['title'])) : ?>
+                <div class="title subheader-24 font-bold text-white"><?= $col1['title'] ?></div>
                 <?php endif; ?>
-                <?php if ($column['description']) : ?>
+                <?php if (!empty($col1['description'])) : ?>
                 <div class="desc text-18px font-normal">
-                    <?= $column['description'] ?>
+                    <?= $col1['description'] ?>
                 </div>
                 <?php endif; ?>
-                <?php if ($column['socials']) : ?>
+                <?php if (!empty($col1['socials'])) : ?>
                 <div class="footer-social">
                     <ul>
-                        <?php foreach ($column['socials'] as $social) : ?>
+                        <?php foreach ($col1['socials'] as $social) : ?>
                         <li>
-                            <a href="<?= $social['url'] ?>" target="_blank">
+                            <a href="<?= $social['link']['url'] ?? 'javascript:;' ?>" target="_blank">
                                 <?= $social['icon'] ?>
                             </a>
                         </li>
@@ -28,12 +31,19 @@
                     </ul>
                 </div>
                 <?php endif; ?>
-                <?php if ($column['contacts']) : ?>
+            </div>
+
+            <!-- Cột 2: Liên hệ -->
+            <div class="footer-column">
+                <?php if (!empty($col2['title'])) : ?>
+                <div class="title subheader-24 font-bold text-white"><?= $col2['title'] ?></div>
+                <?php endif; ?>
+                <?php if (!empty($col2['contacts'])) : ?>
                 <div class="footer-contact">
                     <ul>
-                        <?php foreach ($column['contacts'] as $contact) : ?>
+                        <?php foreach ($col2['contacts'] as $contact) : ?>
                         <li>
-                            <a href="<?= $contact['url'] ?? 'javascript:;' ?>">
+                            <a href="<?= $contact['link']['url'] ?? 'javascript:;' ?>">
                                 <div class="icon"><?= $contact['icon'] ?></div>
                                 <span><?= $contact['text'] ?></span>
                             </a>
@@ -42,36 +52,37 @@
                     </ul>
                 </div>
                 <?php endif; ?>
-                <?php if ($column['menu']) : ?>
+            </div>
+
+            <!-- Cột 3: Liên kết nhanh -->
+            <div class="footer-column">
+                <?php if (!empty($col3['title'])) : ?>
+                <div class="title subheader-24 font-bold text-white"><?= $col3['title'] ?></div>
+                <?php endif; ?>
+                <?php if (!empty($col3['menu'])) : ?>
                 <ul class="footer-menu">
-                    <?php foreach ($column['menu'] as $menu_item) : ?>
+                    <?php foreach ($col3['menu'] as $menu_item) : ?>
                     <li>
-                        <a href="<?= $menu_item['url'] ?? 'javascript:;' ?>"><?= $menu_item['title'] ?></a>
+                        <a href="<?= $menu_item['link']['url'] ?? 'javascript:;' ?>"><?= $menu_item['title'] ?></a>
                     </li>
                     <?php endforeach; ?>
                 </ul>
                 <?php endif; ?>
-                <?php if ($column['download_file']) : ?>
+                <?php if (!empty($col3['download_file'])) : ?>
                 <div class="dowload-file">
-                    <a href="<?= $column['download_file']['url'] ?>" target="_blank">
+                    <a href="<?= $col3['download_file']['url'] ?>" target="_blank">
                         <div class="icon"><i class="fa-regular fa-file-pdf"></i></div>
-                        <span><?php _e('Tải hồ sơ năng lực (PDF)', 'canhcamtheme') ?></span>
+                        <span><?= $col3['download_text'] ?? __('Tải hồ sơ năng lực (PDF)', 'canhcamtheme') ?></span>
                     </a>
                 </div>
                 <?php endif; ?>
             </div>
-            <?php endforeach; ?>
-            <?php else : ?>
-            <!-- Fallback to old structure -->
-            <div class="title subheader-24 font-bold text-white"><?= $footer['title'] ?></div>
-            <div class="description text-18px text-white mt-3"><?= $footer['description'] ?></div>
-            <?php endif; ?>
         </div>
         <div class="footer-bottom flex items-center justify-between mt-10">
             <div class="footer-copyright text-14px">
-                <?= $footer['copyright'] ?>
+                <?= $footer['copyright'] ?? '' ?>
             </div>
-            <?php if ($footer['policy_links']) : ?>
+            <?php if (!empty($footer['policy_links'])) : ?>
             <div class="footer-policy">
                 <ul>
                     <?php foreach ($footer['policy_links'] as $link) : ?>

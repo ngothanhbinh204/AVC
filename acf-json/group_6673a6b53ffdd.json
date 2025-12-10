@@ -105,37 +105,33 @@
                 "class": "",
                 "id": ""
             },
+            "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_footer_columns",
-                    "label": "Footer Columns",
-                    "name": "columns",
+                    "key": "field_footer_col1",
+                    "label": "Cột 1 - Thông tin công ty",
+                    "name": "column_1",
                     "aria-label": "",
-                    "type": "repeater",
+                    "type": "group",
                     "instructions": "",
                     "required": false,
-                    "conditional_logic": false,
+                    "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "min": 1,
-                    "max": 3,
                     "layout": "block",
-                    "rows_per_page": 20,
-                    "button_label": "Add Row",
-                    "collapsed": "",
                     "sub_fields": [
                         {
-                            "key": "field_footer_column_title",
-                            "label": "Title",
+                            "key": "field_footer_col1_title",
+                            "label": "Tiêu đề",
                             "name": "title",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": false,
-                            "conditional_logic": false,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -143,41 +139,39 @@
                             },
                             "default_value": "",
                             "maxlength": "",
-                            "placeholder": "",
+                            "placeholder": "VD: Công ty cổ phần gỗ MDF Mekong",
                             "prepend": "",
-                            "append": "",
-                            "parent_repeater": "field_footer_columns"
+                            "append": ""
                         },
                         {
-                            "key": "field_footer_column_description",
-                            "label": "Description",
+                            "key": "field_footer_col1_description",
+                            "label": "Mô tả",
                             "name": "description",
                             "aria-label": "",
                             "type": "wysiwyg",
                             "instructions": "",
                             "required": false,
-                            "conditional_logic": false,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "tabs": "all",
-                            "toolbar": "full",
-                            "media_upload": 1,
                             "default_value": "",
-                            "delay": 0,
-                            "parent_repeater": "field_footer_columns"
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0,
+                            "delay": 0
                         },
                         {
-                            "key": "field_footer_column_socials",
-                            "label": "Socials",
+                            "key": "field_footer_col1_socials",
+                            "label": "Mạng xã hội",
                             "name": "socials",
                             "aria-label": "",
                             "type": "repeater",
                             "instructions": "",
                             "required": false,
-                            "conditional_logic": false,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -187,18 +181,18 @@
                             "min": 0,
                             "max": 0,
                             "rows_per_page": 20,
-                            "button_label": "Add Row",
+                            "button_label": "Thêm mạng xã hội",
                             "collapsed": "",
                             "sub_fields": [
                                 {
-                                    "key": "field_footer_social_icon",
+                                    "key": "field_footer_col1_social_icon",
                                     "label": "Icon",
                                     "name": "icon",
                                     "aria-label": "",
                                     "type": "text",
-                                    "instructions": "FontAwesome icon HTML (e.g. <i class=\"fa-brands fa-facebook-f\"><\/i>)",
+                                    "instructions": "VD: <i class=\"fa-brands fa-facebook-f\"><\/i>",
                                     "required": false,
-                                    "conditional_logic": false,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -209,38 +203,74 @@
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
-                                    "parent_repeater": "field_footer_column_socials"
+                                    "parent_repeater": "field_footer_col1_socials"
                                 },
                                 {
-                                    "key": "field_footer_social_url",
-                                    "label": "URL",
-                                    "name": "url",
+                                    "key": "field_footer_col1_social_url",
+                                    "label": "Link",
+                                    "name": "link",
                                     "aria-label": "",
-                                    "type": "url",
+                                    "type": "link",
                                     "instructions": "",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "parent_repeater": "field_footer_column_socials"
+                                    "return_format": "array",
+                                    "parent_repeater": "field_footer_col1_socials"
                                 }
-                            ],
-                            "parent_repeater": "field_footer_columns"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "field_footer_col2",
+                    "label": "Cột 2 - Liên hệ",
+                    "name": "column_2",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_footer_col2_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Liên hệ",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         },
                         {
-                            "key": "field_footer_column_contacts",
-                            "label": "Contact Items",
+                            "key": "field_footer_col2_contacts",
+                            "label": "Thông tin liên hệ",
                             "name": "contacts",
                             "aria-label": "",
                             "type": "repeater",
                             "instructions": "",
                             "required": false,
-                            "conditional_logic": false,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -250,18 +280,18 @@
                             "min": 0,
                             "max": 0,
                             "rows_per_page": 20,
-                            "button_label": "Add Row",
+                            "button_label": "Thêm thông tin",
                             "collapsed": "",
                             "sub_fields": [
                                 {
-                                    "key": "field_footer_contact_icon",
+                                    "key": "field_footer_col2_contact_icon",
                                     "label": "Icon",
                                     "name": "icon",
                                     "aria-label": "",
                                     "type": "text",
-                                    "instructions": "FontAwesome icon HTML",
+                                    "instructions": "VD: <i class=\"fa-light fa-location-dot\"><\/i>",
                                     "required": false,
-                                    "conditional_logic": false,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -272,17 +302,17 @@
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
-                                    "parent_repeater": "field_footer_column_contacts"
+                                    "parent_repeater": "field_footer_col2_contacts"
                                 },
                                 {
-                                    "key": "field_footer_contact_text",
-                                    "label": "Text",
+                                    "key": "field_footer_col2_contact_text",
+                                    "label": "Nội dung",
                                     "name": "text",
                                     "aria-label": "",
                                     "type": "text",
                                     "instructions": "",
                                     "required": false,
-                                    "conditional_logic": false,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -293,38 +323,74 @@
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
-                                    "parent_repeater": "field_footer_column_contacts"
+                                    "parent_repeater": "field_footer_col2_contacts"
                                 },
                                 {
-                                    "key": "field_footer_contact_url",
-                                    "label": "URL",
-                                    "name": "url",
+                                    "key": "field_footer_col2_contact_url",
+                                    "label": "Link",
+                                    "name": "link",
                                     "aria-label": "",
-                                    "type": "url",
-                                    "instructions": "",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "type": "link",
+                                    "instructions": "Để trống nếu không cần link",
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "parent_repeater": "field_footer_column_contacts"
+                                    "return_format": "array",
+                                    "parent_repeater": "field_footer_col2_contacts"
                                 }
-                            ],
-                            "parent_repeater": "field_footer_columns"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "field_footer_col3",
+                    "label": "Cột 3 - Liên kết nhanh",
+                    "name": "column_3",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_footer_col3_title",
+                            "label": "Tiêu đề",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Liên kết nhanh",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         },
                         {
-                            "key": "field_footer_column_menu",
-                            "label": "Menu Items",
+                            "key": "field_footer_col3_menu",
+                            "label": "Menu",
                             "name": "menu",
                             "aria-label": "",
                             "type": "repeater",
                             "instructions": "",
                             "required": false,
-                            "conditional_logic": false,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -334,18 +400,18 @@
                             "min": 0,
                             "max": 0,
                             "rows_per_page": 20,
-                            "button_label": "Add Row",
+                            "button_label": "Thêm link",
                             "collapsed": "",
                             "sub_fields": [
                                 {
-                                    "key": "field_footer_menu_title",
-                                    "label": "Title",
+                                    "key": "field_footer_col3_menu_title",
+                                    "label": "Tiêu đề",
                                     "name": "title",
                                     "aria-label": "",
                                     "type": "text",
                                     "instructions": "",
                                     "required": false,
-                                    "conditional_logic": false,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -356,38 +422,36 @@
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
-                                    "parent_repeater": "field_footer_column_menu"
+                                    "parent_repeater": "field_footer_col3_menu"
                                 },
                                 {
-                                    "key": "field_footer_menu_url",
-                                    "label": "URL",
-                                    "name": "url",
+                                    "key": "field_footer_col3_menu_url",
+                                    "label": "Link",
+                                    "name": "link",
                                     "aria-label": "",
-                                    "type": "url",
+                                    "type": "link",
                                     "instructions": "",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
-                                    "default_value": "",
-                                    "placeholder": "",
-                                    "parent_repeater": "field_footer_column_menu"
+                                    "return_format": "array",
+                                    "parent_repeater": "field_footer_col3_menu"
                                 }
-                            ],
-                            "parent_repeater": "field_footer_columns"
+                            ]
                         },
                         {
-                            "key": "field_footer_column_download",
-                            "label": "Download File",
+                            "key": "field_footer_col3_download",
+                            "label": "File tải xuống",
                             "name": "download_file",
                             "aria-label": "",
                             "type": "file",
-                            "instructions": "",
+                            "instructions": "Hồ sơ năng lực (PDF)",
                             "required": false,
-                            "conditional_logic": false,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -397,8 +461,27 @@
                             "library": "all",
                             "min_size": 0,
                             "max_size": 0,
-                            "mime_types": "",
-                            "parent_repeater": "field_footer_columns"
+                            "mime_types": "pdf"
+                        },
+                        {
+                            "key": "field_footer_col3_download_text",
+                            "label": "Text hiển thị",
+                            "name": "download_text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Tải hồ sơ năng lực (PDF)",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         }
                     ]
                 },
@@ -417,8 +500,8 @@
                         "id": ""
                     },
                     "tabs": "all",
-                    "toolbar": "full",
-                    "media_upload": 1,
+                    "toolbar": "basic",
+                    "media_upload": 0,
                     "default_value": "",
                     "delay": 0
                 },
@@ -440,12 +523,12 @@
                     "min": 0,
                     "max": 0,
                     "rows_per_page": 20,
-                    "button_label": "Add Row",
+                    "button_label": "Thêm link",
                     "collapsed": "",
                     "sub_fields": [
                         {
                             "key": "field_footer_policy_title",
-                            "label": "Title",
+                            "label": "Tiêu đề",
                             "name": "title",
                             "aria-label": "",
                             "type": "text",
@@ -484,8 +567,7 @@
                         }
                     ]
                 }
-            ],
-            "layout": "block"
+            ]
         },
         {
             "key": "field_6673ede86267b",
@@ -773,5 +855,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1765177691
+    "modified": 1765356905
 }

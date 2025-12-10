@@ -1,13 +1,12 @@
 <?php
 global $post;
-$fields = get_field('group_5', $post);
-$description = $fields['description'] ?? '';
+// $fields = get_field('group_5', $post);
+$description  = get_field('description_partner', $post) ?? '';
 ?>
 
 
 
 <?php
-global $post;
 $idHomePage = get_option('page_on_front');
 $fields = get_field('group_8', $idHomePage);
 $title = $fields['title'] ?? '';

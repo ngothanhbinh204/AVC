@@ -311,8 +311,7 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu
             $count++;
             if ($count == 1) {
                 // Thêm class active cho icon home nếu đang ở trang chủ
-                $home_class = (is_front_page() || is_home()) ? ' class="active"' : '';
-                var_dump($home_class);
+                $home_class = (is_front_page() || is_home()) ? ' class="current"' : '';
                 $output .= '<li' . $home_class . '><a href="' . esc_attr($item->url) . '"><i class="fa-solid fa-house"></i></a></li>';
                 return;
             }
