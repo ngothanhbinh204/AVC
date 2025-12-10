@@ -36,6 +36,69 @@ $banner_bg_url = $banner_bg ? get_image_attrachment($banner_bg, 'url') : '';
 </section>
 
 <?php
+// Load ACF groups for the intro sections so editors can fill content via ACF
+$intro1 = get_field('intro_recruitment_1', $post->ID) ?: array();
+$intro2 = get_field('intro_recruitment_2', $post->ID) ?: array();
+?>
+
+<section class="introduce-1 recruitment_intro recruitment_intro_top section xl:py-20" id="">
+    <div class="container">
+        <div class="grid xl:grid-cols-2 gap-y-4 xl:items-center">
+            <div class="col-left" data-aos='fade-left'>
+                <div class="img">
+                    <a href="javascript:;" rel="nofollow">
+                        <?= custom_lozad_image($intro1['image'] ?? '') ?>
+                    </a>
+                </div>
+            </div>
+            <div class="col-right">
+                <div class="wrapper xl:ml-auto">
+                    <div data-aos="fade-up">
+                        <h1 class="title font-bold text-primary-800">
+                            <?= esc_html($intro1['big_title'] ?? '') ?></h1>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay=500>
+                        <div class="description mt-6 space-y-3 text-18px font-normal text-neutral-900">
+                            <?= wp_kses_post($intro1['description'] ?? '') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="introduce-1 recruitment_intro recruitment_intro_under section xl:py-20" id="">
+    <div class="container">
+        <div class="grid xl:grid-cols-2 gap-y-4 xl:items-center">
+            <div class="col-left" data-aos='fade-right'>
+                <div class="img">
+                    <a href="javascript:;" rel="nofollow">
+                        <?= custom_lozad_image($intro2['image'] ?? '') ?>
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-right">
+                <div class="wrapper xl:ml-auto">
+                    <div data-aos="fade-up">
+                        <h1 class="title font-bold text-primary-800">
+                            <?= esc_html($intro2['big_title'] ?? '') ?></h1>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay=500>
+                        <div class="description mt-6 space-y-3 text-18px font-normal text-neutral-900">
+                            <?= wp_kses_post($intro2['description'] ?? '') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php
 // Section 2: Môi trường làm việc
 $group_2 = get_field('group_2', $post->ID);
 $env_title = $group_2['title'] ?? '';

@@ -16,7 +16,8 @@ $fields = get_field('group_1', $post);
             <div class="col-right">
                 <div class="wrapper xl:max-w-clamp-579px xl:ml-auto">
                     <div data-aos="fade-up">
-                        <h1 class="title text-32px sm:text-40px lg:text-64px font-bold text-primary-800"><?= $fields['big_title'] ?></h1>
+                        <h1 class="title text-32px sm:text-40px lg:text-64px font-bold text-primary-800">
+                            <?= $fields['big_title'] ?></h1>
                     </div>
                     <div data-aos="fade-up" data-aos-delay=300>
                         <h2 class="text-image block-title font-black mt-3"><?= $fields['title'] ?></h2>
