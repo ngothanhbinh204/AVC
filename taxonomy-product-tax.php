@@ -76,7 +76,11 @@ if (is_tax() && isset($queried->term_id)) {
                                 $acf_key = $taxonomy . '_' . $value->term_id;
                                 // $image = get_field('image', $acf_key);
                                 $gallery = get_field('gallery', $acf_key);
+                                $term_link_default = get_term_link($value->term_id, $taxonomy);
                                 $url = get_field('url', $acf_key) ?? "javascript:;";
+                                if (empty($url) || $url == 'javascript:;') {
+                                    $url = $term_link_default;
+                                }
                                 ?>
                         <div class="grid lg:grid-cols-2 gap-y-4 items-center">
                             <div class="col-left" data-aos='fade-left'>

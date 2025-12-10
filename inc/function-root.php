@@ -540,8 +540,8 @@ return $post_parent->ID;
 function changeAttrImage($url)
 {
 $image_output = $url;
-// Thêm class lazyload và thay đổi src thành data-src
-$image_output = str_replace('class="', 'class="lazyload ', $image_output);
+// Thêm class lozad và thay đổi src thành data-src
+$image_output = str_replace('class="', 'class="lozad ', $image_output);
 $image_output = str_replace('src="',
 'src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="', $image_output);
 return $image_output;
@@ -561,7 +561,7 @@ if ($type == "image") {
 if ($image_id) {
 $alt = get_post_meta($image_id, '_wp_attachment_image_alt', true) != '' ? get_post_meta($image_id,
 '_wp_attachment_image_alt', true) : get_bloginfo('name');
-$url = wp_get_attachment_image($image_id, 'full', '', array('class' => '1', 'alt' => $alt, 'title' => $alt));
+$url = wp_get_attachment_image($image_id, 'full', '', array('class' => '', 'alt' => $alt, 'title' => $alt));
 return changeAttrImage($url);
 }
 }

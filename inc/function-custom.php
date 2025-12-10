@@ -310,14 +310,19 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu
         if ($depth == 0) {
             $count++;
             if ($count == 1) {
-                $output .= '<li><a href="' . esc_attr($item->url) . '"><i class="fa-solid fa-house"></i></a></li>';
+                // Thêm class active cho icon home nếu đang ở trang chủ
+                $home_class = (is_front_page() || is_home()) ? ' class="active"' : '';
+                var_dump($home_class);
+                $output .= '<li' . $home_class . '><a href="' . esc_attr($item->url) . '"><i class="fa-solid fa-house"></i></a></li>';
                 return;
             }
         }
+        
         $isValidCustomUrl = $item->custom_data && $item->custom_data['url'] && $item->custom_data['isModify'];
         if ($isValidCustomUrl) {
             $item->url = $item->custom_data['url'];
         }
+        
         $classes = array();
         if ($depth === 0) {
             $classes[] = 'nav-link';
@@ -325,32 +330,64 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu
             $classes[] = 'nav-link-sub';
         }
 
-        // Check if the current item is a parent of the current post or taxonomy
-        if (is_singular() && in_array($item->object_id, get_post_ancestors(get_the_ID()))) {
+        // Kiểm tra active cho các trường hợp khác nhau
+        $is_active = false;
+        
+        // Kiểm tra trang chủ
+        if ((is_front_page() || is_home()) && ($item->object_id == get_option('page_on_front'))) {
+            $is_active = true;
+        }
+        
+        // Kiểm tra single post/page
+        elseif (is_singular() && $item->object_id == get_the_ID()) {
+            $is_active = true;
+        }
+        
+        // Kiểm tra parent của current post
+        elseif (is_singular() && in_array($item->object_id, get_post_ancestors(get_the_ID()))) {
+            $is_active = true;
+        }
+        
+        // Kiểm tra taxonomy
+        elseif (is_tax() || is_category() || is_tag()) {
+            $queried_object = get_queried_object();
+            if ($queried_object && isset($queried_object->term_id) && $item->object_id == $queried_object->term_id) {
+                $is_active = true;
+            }
+        }
+        
+        // Kiểm tra post type archive
+        elseif (is_post_type_archive() && $item->object == get_post_type()) {
+            $is_active = true;
+        }
+        
+        // Fallback: sử dụng WordPress built-in classes
+        elseif ($item->current || $item->current_item_ancestor || $item->current_item_parent) {
+            $is_active = true;
+        }
+        
+        if ($is_active) {
             $classes[] = 'active';
-        } elseif (is_tax() && $item->object_id == get_queried_object()->parent) {
-            $classes[] = 'active';
-        } else {
-            $classes[] = ($item->current || $item->current_item_ancestor) ? 'active' : '';
         }
 
         if (in_array('menu-item-has-children', $item->classes)) {
             $classes[] = 'drop-down';
         }
 
-        $class_names = join(' ', $classes);
+        $class_names = join(' ', array_filter($classes)); // array_filter để loại bỏ empty strings
         if ($item->classes) {
             $class_names .= ' ' . implode(' ', $item->classes);
         }
 
-
         $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
         $output .= '<li' . $class_names . '>';
+        
         $attributes  = !empty($item->attr_title) ? ' title="'  . esc_attr($item->attr_title) . '"' : '';
         $attributes .= !empty($item->target)     ? ' target="' . esc_attr($item->target) . '"' : '';
         $attributes .= !empty($item->xfn)        ? ' rel="'    . esc_attr($item->xfn) . '"' : '';
         $attributes .= !empty($item->url)        ? ' href="'   . esc_attr($item->url) . '"' : '';
+        
         $item_output = $args->before;
         if (in_array('menu-item-has-children', $item->classes)) {
             $item_output .= '<div class="title"><a' . $attributes . '>' . apply_filters('the_title', $item->title, $item->ID) . '</a><div class="icon"><i class="fa-thin fa-chevron-down"></i></div></div>';
@@ -358,9 +395,9 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu
             $item_output .= '<a' . $attributes . '>' . apply_filters('the_title', $item->title, $item->ID) . '</a>';
         }
         $item_output .= $args->after;
+        
         $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
     }
-
 
     function start_lvl(&$output, $depth = 0, $args = array())
     {
@@ -580,3 +617,33 @@ function load_more_recruitment_posts() {
 }
 add_action('wp_ajax_load_more_recruitment', 'load_more_recruitment_posts');
 add_action('wp_ajax_nopriv_load_more_recruitment', 'load_more_recruitment_posts');
+
+
+
+function custom_rank_math_breadcrumb_items( $crumbs, $class ) {
+    
+    if ( count( $crumbs ) > 2 ) {
+        
+        $new_crumbs = [];
+        
+        $new_crumbs[] = $crumbs[0];
+        
+        $cpt_archive_link = get_post_type_archive_link( 'product' );
+        
+        if ( is_singular( 'product' ) && $cpt_archive_link ) {
+             $new_crumbs[] = [ 
+                esc_html__( 'Sản phẩm', 'canhcamtheme' ),
+                $cpt_archive_link,
+            ];
+        }
+        
+        $last_item = end( $crumbs );
+        $new_crumbs[] = $last_item;
+        
+        return $new_crumbs;
+
+    }
+    
+    return $crumbs;
+}
+add_filter( 'rank_math/frontend/breadcrumb/items', 'custom_rank_math_breadcrumb_items', 10, 2 );
